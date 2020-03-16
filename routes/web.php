@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,9 +51,20 @@ Route::middleware('checkTeacher')->group(function () {
         return view('user.teacher.examform');
     })->name('examfrom');
 
-    // validate
+    Route::get('teacher/{name}/academic', 'teacher\teacherController@academic')->name('academic');
+    Route::post('teacher/{name}/academic', function (Request $request) {
+        // dd($request->student_id);
+        $request->session()->flash('student_id', $request->student_id);
+        return redirect(route('result', ['name' => Auth::guard('teacher')->user()->fname]));
+    })->name('academic');
+
+    Route::get('teacher/{name}/result', 'teacher\teacherController@result')->name('result');
+    Route::post('teacher/result', 'teacher\teacherController@addResult')->name('addResult');
+    // validate fatch or ajax
 
     Route::post('/validation/getstudentData', 'ajaxController@getStudent');
+    Route::post('/validation/getstudentProfile', 'ajaxController@getStudentProfile');
+    Route::post('/validation/getstudentAcademic', 'ajaxController@getStudentAcademic');
     Route::post('/validation/getparentData', 'ajaxController@getParent');
     Route::post('/formdata/getStreamyear', 'ajaxController@getStreamYear');
 

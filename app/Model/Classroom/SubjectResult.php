@@ -11,7 +11,7 @@ class SubjectResult extends Model
      *
      * @var string
      */
-    protected $table = 'subjects_relsult';
+    protected $table = 'subject_relsults';
     /**
      * The primary key associated with the table.
      *
@@ -24,5 +24,15 @@ class SubjectResult extends Model
      * @var bool
      */
     public $incrementing = true;
-
+    protected $fillable = [
+        'id', 'student_id', 'subject_id', 'marks',
+    ];
+    public function student()
+    {
+        return $this->belongsTo('App\Model\User\Student', 'student_id', 'student_id');
+    }
+    public function subject()
+    {
+        return $this->belongsTo('App\Model\Classroom\Subject', 'subject_id', 'subject_id');
+    }
 }

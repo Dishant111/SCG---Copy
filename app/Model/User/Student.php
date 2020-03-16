@@ -45,10 +45,25 @@ class Student extends Authenticatable
     {
         return $this->belongsTo('App\Model\User\Parents', 'parent_id');
     }
+    public function subjectResult()
+    {
+        return $this->hasMany('App\Model\Classroom\SubjectResult', 'student_id', 'student_id');
+    }
 
     public function classRoomStudents()
     {
         return $this->hasMany('App\Model\Classroom\ClassRoomStudent', 'student_id');
+    }
+
+    public function profile($id)
+    {
+        $profile = Student::select('students.*', 'classrooms.*', 'streams.*', 'classroom_students.teacher_id as teacher_id', 'parents.fname as parentFname', 'parents.lname as parentLname')->where('students.student_id', $id)->latest('students.updated_at')->join('classroom_students', 'students.student_id', '=', 'classroom_students.student_id')->join('classrooms', 'classroom_students.classroom_id', '=', 'classrooms.class_id')->join('streams', 'streams.stream_id', '=', 'classrooms.stream_id')->join('parents', 'parents.parent_id', '=', 'students.parent_id')->get()->first();
+        if ($profile) {
+            return $profile;
+        } else {
+            return false;
+        }
+
     }
     public function add(Request $request)
     {

@@ -23,16 +23,13 @@ class Subject extends Model
      *
      * @var bool
      */
-    public $incrementing = false;
-    /**
-     * The "type" of the auto-incrementing ID.
-     *
-     * @var string
-     */
-    protected $keyType = 'string';
 
+    public $incrementing = true;
+    protected $fillable = [
+        'subject_id', 'name', 'class_id', 'description',
+    ];
     public function subjectResult()
     {
-        // return $this->hasMany('App\Classroom\Model\s');
+        return $this->belongsTo('App\Model\Classroom\ClassRoom', 'class_id', 'class_id');
     }
 }

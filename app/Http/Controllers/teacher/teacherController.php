@@ -20,6 +20,21 @@ class teacherController extends Controller
     // {
     //     # code...
     // }
+    public function result(Request $request)
+    {
+        $request->session()->reflash();
+        return view('user.teacher.addResult');
+    }
+    public function addResult(Request $request)
+    {
+        return back()->with('msg', 'success');
+    }
+    public function academic()
+    {
+        $student = new Student();
+        $profile = $student->profile('abc4');
+        return view('user.teacher.academic')->with('profile', $profile);
+    }
     public function createStudentPage()
     {
         $streams = new Stream();

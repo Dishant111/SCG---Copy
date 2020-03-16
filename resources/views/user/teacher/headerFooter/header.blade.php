@@ -35,14 +35,20 @@
                             aria-expanded="false">Edit</a></div>
                 </li>
                 <li class="nav-item dropdown open">
-                    <a class="nav-link link text-white dropdown-toggle display-4" href="https://mobirise.com"
-                        aria-expanded="true" data-toggle="dropdown-submenu"><span
+                    <a class="nav-link link text-white dropdown-toggle display-4" href="#" aria-expanded="true"
+                        data-toggle="dropdown-submenu"><span
                             class="mobi-mbri mobi-mbri-user mbr-iconfont mbr-iconfont-btn"></span>Student</a>
-                    <div class="dropdown-menu"><a class="text-white dropdown-item display-4"
+                    <div class="dropdown-menu">
+                        <a class="text-white dropdown-item display-4"
                             href="{{route('createStudentPage',['name' => Auth::guard('teacher')->user()->fname])}}"
-                            aria-expanded="false">Ragistration</a><a class="text-white dropdown-item display-4"
+                            aria-expanded="false">Ragistration</a>
+                        <a class="text-white dropdown-item display-4"
                             href="{{route('updateStudent',['name' => Auth::guard('teacher')->user()->fname])}}"
-                            aria-expanded="false">Edit</a></div>
+                            aria-expanded="false">Edit profile</a>
+                        <a class="text-white dropdown-item display-4"
+                            href="{{route('academic',['name' => Auth::guard('teacher')->user()->fname])}}"
+                            aria-expanded="false">Academics</a>
+                    </div>
                 </li>
                 <li class="nav-item"><a class="nav-link link text-white display-4"
                         href="{{route('teacherDashBoard', ['name' => Auth::guard('teacher')->user()->fname])}}"><span
@@ -53,5 +59,6 @@
                     href="{{route('teacherLogout')}}"><span
                         class="mobi-mbri mobi-mbri-user-2 mbr-iconfont mbr-iconfont-btn"></span>Logout</a></div>
         </div>
+
     </nav>
 </section>
