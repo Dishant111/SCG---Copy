@@ -18,6 +18,7 @@ class FinalCareers extends Migration
             $table->string('student_id');
             $table->unsignedBigInteger('careerfield_id');
             $table->unsignedBigInteger('personality_type_id');
+            $table->decimal('success_rate', 4, 3)->nullable();
             $table->timestamps();
             $table->foreign('personality_type_id')->references('personality_type_id')->on('personality_types');
             $table->foreign('student_id')->references('student_id')->on('students');

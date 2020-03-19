@@ -22,7 +22,7 @@ class Parents extends Migration
             // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('contact')->unsigned()->nullable();
-            $table->rememberToken();
+            // $table->rememberToken();
             $table->primary('parent_id');
             $table->timestamps();
             // $table->primary('id');

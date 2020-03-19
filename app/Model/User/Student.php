@@ -57,7 +57,8 @@ class Student extends Authenticatable
 
     public function profile($id)
     {
-        $profile = Student::select('students.*', 'classrooms.*', 'streams.*', 'classroom_students.teacher_id as teacher_id', 'parents.fname as parentFname', 'parents.lname as parentLname')->where('students.student_id', $id)->latest('students.updated_at')->join('classroom_students', 'students.student_id', '=', 'classroom_students.student_id')->join('classrooms', 'classroom_students.classroom_id', '=', 'classrooms.class_id')->join('streams', 'streams.stream_id', '=', 'classrooms.stream_id')->join('parents', 'parents.parent_id', '=', 'students.parent_id')->get()->first();
+        $profile = Student::select('students.*', 'classrooms.*', 'classes.*', 'streams.*', 'classroom_students.*', 'parents.fname as parentFname', 'parents.lname as parentLname')->where('students.student_id', $id)->latest('students.updated_at')->join('classroom_students', 'students.student_id', '=', 'classroom_students.student_id')->join('classrooms', 'classroom_students.classroom_id', '=', 'classrooms.classroom_id')->join('classes', 'classrooms.classes_id', '=', 'classes.classes_id')->join('streams', 'streams.stream_id', '=', 'classes.stream_id')->join('parents', 'parents.parent_id', '=', 'students.parent_id')->get()->first();
+        // $profile = Student::select('students.*', 'classrooms.*', 'streams.*', 'classroom_students.teacher_id as teacher_id', 'parents.fname as parentFname', 'parents.lname as parentLname')->where('students.student_id', $id)->latest('students.updated_at')->join('classroom_students', 'students.student_id', '=', 'classroom_students.student_id')->join('classrooms', 'classroom_students.classroom_id', '=', 'classrooms.class_id')->join('streams', 'streams.stream_id', '=', 'classrooms.stream_id')->join('parents', 'parents.parent_id', '=', 'students.parent_id')->get()->first();
         if ($profile) {
             return $profile;
         } else {

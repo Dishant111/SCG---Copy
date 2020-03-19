@@ -3,12 +3,22 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Model\Test\Question;
 use App\Model\User\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class adminController extends Controller
 {
+    public function addPersonality(Request $request)
+    {
+        $question = new Question();
+        if ($question->addWithOption($request->toArray())) {
+            return back()->with('msg', 'Qustion Added');
+        } else {
+            return back()->with('msg', 'Failed to add  Question');
+        }
+    }
     public function loginPage()
     {
         return view('user.admin.login');

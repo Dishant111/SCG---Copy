@@ -19,8 +19,8 @@ class ClassroomStudents extends Migration
             $table->unsignedBigInteger('classroom_id');
             $table->string('teacher_id');
             $table->foreign('student_id')->references('student_id')->on('students');
-            $table->foreign('classroom_id')->references('class_id')->on('classrooms');
-            $table->foreign('teacher_id')->references('teacher_id')->on('teachers')->onUpdate(’cascade’);
+            $table->foreign('classroom_id')->references('classroom_id')->on('classrooms');
+            $table->foreign('teacher_id')->references('teacher_id')->on('teachers')->onUpdate('cascade');
             $table->timestamps();
         });
     }

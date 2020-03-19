@@ -11,7 +11,7 @@ class SubjectResult extends Model
      *
      * @var string
      */
-    protected $table = 'subject_relsults';
+    protected $table = 'subject_results';
     /**
      * The primary key associated with the table.
      *
@@ -27,6 +27,7 @@ class SubjectResult extends Model
     protected $fillable = [
         'id', 'student_id', 'subject_id', 'marks',
     ];
+    public $timestamps = false;
     public function student()
     {
         return $this->belongsTo('App\Model\User\Student', 'student_id', 'student_id');
@@ -35,4 +36,12 @@ class SubjectResult extends Model
     {
         return $this->belongsTo('App\Model\Classroom\Subject', 'subject_id', 'subject_id');
     }
+    public function make($data)
+    {
+        return SubjectResult::create($data);
+    }
+    // function getResult($id)
+    // {
+         
+    // }
 }

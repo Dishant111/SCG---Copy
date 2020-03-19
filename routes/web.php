@@ -54,7 +54,9 @@ Route::middleware('checkTeacher')->group(function () {
     Route::get('teacher/{name}/academic', 'teacher\teacherController@academic')->name('academic');
     Route::post('teacher/{name}/academic', function (Request $request) {
         // dd($request->student_id);
-        $request->session()->flash('student_id', $request->student_id);
+        // dd($request->all());
+        $request->session()->flash('student', $request->all());
+
         return redirect(route('result', ['name' => Auth::guard('teacher')->user()->fname]));
     })->name('academic');
 
@@ -67,6 +69,7 @@ Route::middleware('checkTeacher')->group(function () {
     Route::post('/validation/getstudentAcademic', 'ajaxController@getStudentAcademic');
     Route::post('/validation/getparentData', 'ajaxController@getParent');
     Route::post('/formdata/getStreamyear', 'ajaxController@getStreamYear');
+    Route::post('/formdata/getSubject', 'ajaxController@getSubject');
 
 });
 // Parent
@@ -78,15 +81,20 @@ Route::middleware('checkParents')->group(function () {
 });
 // admin
 Route::middleware('checkAdmin')->group(function () {
-    Route::get('/admin/createteacher', function () {
-        return view('user\admin\createTeacher');
-    })->name('createTeacherPage');
-    Route::post('createTeacher', 'admin\adminController@createTeacher')->name('createTeacher');
-    Route::get('admin/dashboard', 'admin\adminController@dashboard')->name('adminDashboard');
-    Route::get('adminLogout', 'admin\adminController@logout')->name('adminLogout');
+
 });
+Route::get('/admin/createteacher', function () {
+    return view('user\admin\createTeacher');
+})->name('createTeacherPage');
+Route::post('createTeacher', 'admin\adminController@createTeacher')->name('createTeacher');
+Route::get('admin/dashboard', 'admin\adminController@dashboard')->name('adminDashboard');
+Route::get('adminLogout', 'admin\adminController@logout')->name('adminLogout');
 Route::get('adminlogin', 'admin\adminController@loginPage')->name('adminLoginPage');
 Route::post('adminlogin', 'admin\adminController@login')->name('adminLogin');
+Route::get('/addPersonalityQuestion', function () {
+    return view('user.admin.addPersonality');
+})->name('addPersonalityPage');
+Route::post('/addPersonalityQuestion', 'admin\adminController@addPersonality')->name('addPersonality');
 
 // // validation data for ajax
 // Route::post('/validation/getstudentData', 'ajaxController@getStudent');

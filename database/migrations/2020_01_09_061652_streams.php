@@ -16,7 +16,7 @@ class Streams extends Migration
         Schema::create('streams', function (Blueprint $table) {
             $table->bigIncrements('stream_id');
             $table->string('stream_name');
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 

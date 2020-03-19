@@ -16,12 +16,14 @@ class TestResults extends Migration
         Schema::create('test_results', function (Blueprint $table) {
             $table->bigIncrements('test_result_id');
             $table->string('student_id');
-            $table->unsignedBigInteger('test_id');
+            $table->unsignedBigInteger('test_type_id');
             $table->string('score');
             $table->date('date');
+            $table->unsignedBigInteger('careerfield_id')->nullable();
             $table->timestamps();
-            $table->foreign('test_id')->references('test_id')->on('tests');
+            $table->foreign('test_type_id')->references('test_type_id')->on('test_types');
             $table->foreign('student_id')->references('student_id')->on('students');
+            $table->foreign('careerfield_id')->references('careerfield_id')->on('careerfields');
         });
     }
 

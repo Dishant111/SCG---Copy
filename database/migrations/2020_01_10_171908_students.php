@@ -18,14 +18,14 @@ class Students extends Migration
             $table->string('student_id')->unique();
             $table->string('parent_id');
             $table->string('fname');
-            $table->string('lname');
+            $table->string('lname')->nullable();
 
             $table->string('email')->unique()->nullable();
-            $table->timestamp('email_verified_at')->nullable();
+            // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->date('DOB')->nullable();
             $table->integer('contact')->unsigned()->nullable();
-            $table->rememberToken();
+            // $table->rememberToken();
             $table->timestamps();
             $table->primary('student_id');
             $table->foreign('parent_id')->references('parent_id')->on('parents')->onUpdate('cascade');

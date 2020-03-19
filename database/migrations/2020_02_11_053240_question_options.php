@@ -17,7 +17,7 @@ class QuestionOptions extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('question_id');
             $table->string('option');
-            $table->boolean('correct')->default(false);
+            // $table->boolean('correct')->default(false);
             $table->unsignedBigInteger('personality_type_id')->nullable();
             $table->timestamps();
             $table->foreign('question_id')->references('id')->on('questions');

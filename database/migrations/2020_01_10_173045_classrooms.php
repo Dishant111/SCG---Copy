@@ -14,14 +14,13 @@ class Classrooms extends Migration
     public function up()
     {
         Schema::create('classrooms', function (Blueprint $table) {
-            $table->bigIncrements('class_id');
+            $table->bigIncrements('classroom_id');
             $table->year('year');
-            $table->string('class');
-            $table->unsignedBigInteger('stream_id');
+            $table->unsignedBigInteger('classes_id');
             // $table->unsignedBigInteger('subject_id');
             // $table->string('teacher_id');
             // $table->foreign('teacher_id')->references('teacher_id')->on('teachers');
-            $table->foreign('stream_id')->references('stream_id')->on('streams');
+            $table->foreign('classes_id')->references('classes_id')->on('classes');
             // $table->timestamps();
         });
     }

@@ -128,6 +128,7 @@
         <form method="POST" action="{{route('academic',['name'=>Auth::guard('teacher')->user()->fname])}}">
             @csrf
             <input type="hidden" name="student_id" value="">
+            <input type="hidden" name="stream_id" value="">
             <div class="mbr-section-btn studentdetails" style="display: none">
                 <button type="submit" class="btn btn-md btn-secondary display-4" href="#">results</button>
                 <a class="btn btn-md btn-secondary display-4" href="#">LEARN MORE</a>
@@ -149,6 +150,7 @@
         function setData(student) {
             console.log(student.student_id);
             $('input[name="student_id"]').val(student.student_id);
+            $('input[name="stream_id"]').val(student.stream_id);
             $('#student_id').text(student.student_id);
             $('#fname').text(student.fname);
             $('#lname').text(student.lname);

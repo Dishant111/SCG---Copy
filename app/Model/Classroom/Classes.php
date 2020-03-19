@@ -4,36 +4,37 @@ namespace App\Model\Classroom;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Subject extends Model
+class Classes extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'subjects';
+    protected $table = 'classes';
     /**
      * The primary key associated with the table.
      *
      * @var string
      */
-    protected $primaryKey = 'subject_id';
+    protected $primaryKey = 'classes_id';
     /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
      */
-
     public $incrementing = true;
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
     protected $fillable = [
-        'subject_id', 'name', 'classes_id', 'description',
+        'classes_id', 'class', 'classes_id',
     ];
-    public function subjectResult()
+
+    public function getClasses()
     {
-        return $this->hasMany('App\Model\Classroom\SubjectResult', 'classes_id', 'classes_id');
+        return Classes::distinct()->pluck('class');
     }
-    // function getSubjects($)
-    // {
-    //     # code...
-    // }
 }

@@ -3,12 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Model\Classroom\ClassRoom;
+use App\Model\Classroom\Stream;
 use App\Model\User\Parents;
 use App\Model\User\Student;
 use Illuminate\Http\Request;
 
 class ajaxController extends Controller
 {
+    public function getSubject(Request $request)
+    {
+        $inputdata = [
+            ['streams.stream_id', $request->stream_id],
+            ['classrooms.year', $request->year],
+            ['class', $request->classes],
+        ];
+        $data = Stream::select('subjects.subject_id', 'subjects.name')->where($inputdata)->join('classes', 'streams.stream_id', '=', 'classes.stream_id')->join('classrooms', 'classrooms.classes_id', '=', 'classes.classes_id')->join('subjects', 'subjects.classes_id', '=', 'classes.classes_id')->get();
+        // Stream::select('subjects.*')->where([['streams.stream_id', '1'], ['classrooms.year', 2019], ['class', '11']])->join('classes', 'streams.stream_id', '=', 'classes.stream_id')->join('classrooms', 'classrooms.classes_id', '=', 'classes.classes_id')->join('subjects', 'subjects.classes_id', '=', 'classes.classes_id')->get();
+
+        return response()->json($data);
+    }
     public function getStudentAcademic(Request $request)
     {
         $data = ['student_id' => false];

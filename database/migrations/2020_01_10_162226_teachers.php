@@ -20,10 +20,10 @@ class Teachers extends Migration
             $table->string('lname')->nullable();
             // $table->string('teacher_id')->unique();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('contact')->unsigned()->nullable();
-            $table->rememberToken();
+            // $table->rememberToken();
             $table->timestamps();
             $table->primary('teacher_id');
             // $table->timestamps();

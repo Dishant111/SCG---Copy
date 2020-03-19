@@ -44,8 +44,12 @@
                             <div class="col-md-4 mb-3">
                                 <div class="form-group">
                                     <label for="formGroupExampleInput">Class</label>
-                                    <input type="text" name="class" class="form-control" placeholder="first name"
-                                        required>
+                                    <select id="Stream" name="class" class="form-control" required>
+                                        <option selected value="">Select Stream</option>
+                                        @foreach ($classes as $class)
+                                        <option value="{{$class}}">{{$class}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-4 mb-3">
@@ -64,7 +68,9 @@
                                     <label for="formGroupExampleInput">Year</label>
                                     <select id="StreamYear" name="StreamYear" class="form-control" required>
                                         <option selected value="">Select Year</option>
-                                        {{--  option are from js  --}}
+                                        @foreach ($years as $year)
+                                        <option value="{{$year}}">{{$year}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -175,7 +181,7 @@
     alert("{{session('msg')}}");
 </script>
 @endif
-<script>
+{{--  <script>
     $(document).ready(function () {
        
         async function getStreamYear(data) {
@@ -220,7 +226,7 @@
 
         });
     });
-</script>
+</script>  --}}
 {{-- date picker --}}
 {{-- <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script> --}}

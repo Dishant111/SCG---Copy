@@ -17,7 +17,7 @@ class ClassRoom extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'class_id';
+    protected $primaryKey = 'classroom_id';
     /**
      * Indicates if the IDs are auto-incrementing.
      *
@@ -29,24 +29,29 @@ class ClassRoom extends Model
      *
      * @var string
      */
+    protected $fillable = [
+        'classroom_id', 'year', 'stream_id',
+    ];
 
     public function classRoomStudent()
     {
         return $this->hasMany('App\Model\Classroom\ClassRoomStudent', 'classroom_id');
     }
-    public function getYears($id)
+    public function getYears()
     {
-        return ClassRoom::where('stream_id', $id)->distinct()->pluck('year');
+        return ClassRoom::distinct()->pluck('year');
     }
-    public function getStream($data)
+    public function getClass($data)
     {
         $newdata = [
             ['stream_id', $data['stream_id']],
             ['class', $data['class']],
             ['year', $data['year']],
         ];
-        return ClassRoom::where($newdata)->distinct()->get()->first();
+        // dd($newdata);
+        return ClassRoom::select('classrooms.*', 'classes.*')->where($newdata)->join('classes', 'classes.classes_id', '=', 'classrooms.classes_id')->get()->first();
     }
+
     // public function subjects()
     // {
     //     return $this->hasMany('App\Classroom\Model\Subject');

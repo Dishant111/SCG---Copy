@@ -18,9 +18,12 @@ class Questions extends Migration
             $table->unsignedBigInteger('test_type_id');
             $table->string('question_text');
             $table->string('question_description')->nullable();
-            $table->binary('image')->nullable();
-            $table->timestamps();
+            $table->unsignedBigInteger('careerfield_id')->nullable();
+            // $table->binary('image')->nullable();
+            // $table->timestamps();
+
             $table->foreign('test_type_id')->references('test_type_id')->on('test_types');
+            $table->foreign('careerfield_id')->references('careerfield_id')->on('careerfields');
         });
     }
 

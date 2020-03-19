@@ -6,10 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\Classroom\\Model\\ClassRoom' => $baseDir . '/app/Model/Classroom/ClassRoom.php',
-    'App\\Classroom\\Model\\ClassRoomStudent' => $baseDir . '/app/Model/Classroom/ClassRoomStudent.php',
-    'App\\Classroom\\Model\\Subject' => $baseDir . '/app/Model/Classroom/Subject.php',
-    'App\\Classroom\\Model\\SubjectResult' => $baseDir . '/app/Model/Classroom/SubjectResult.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
@@ -20,6 +16,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\admin\\adminController' => $baseDir . '/app/Http/Controllers/admin/adminController.php',
+    'App\\Http\\Controllers\\ajaxController' => $baseDir . '/app/Http/Controllers/ajaxController.php',
     'App\\Http\\Controllers\\loginController' => $baseDir . '/app/Http/Controllers/loginController.php',
     'App\\Http\\Controllers\\page\\pageController' => $baseDir . '/app/Http/Controllers/page/pageController.php',
     'App\\Http\\Controllers\\parent\\parentController' => $baseDir . '/app/Http/Controllers/parent/parentController.php',
@@ -38,6 +35,11 @@ return array(
     'App\\Http\\Middleware\\parents' => $baseDir . '/app/Http/Middleware/parents.php',
     'App\\Http\\Middleware\\student' => $baseDir . '/app/Http/Middleware/student.php',
     'App\\Http\\Middleware\\teacher' => $baseDir . '/app/Http/Middleware/teacher.php',
+    'App\\Model\\Classroom\\ClassRoom' => $baseDir . '/app/Model/Classroom/ClassRoom.php',
+    'App\\Model\\Classroom\\ClassRoomStudent' => $baseDir . '/app/Model/Classroom/ClassRoomStudent.php',
+    'App\\Model\\Classroom\\Stream' => $baseDir . '/app/Model/Classroom/Stream.php',
+    'App\\Model\\Classroom\\Subject' => $baseDir . '/app/Model/Classroom/Subject.php',
+    'App\\Model\\Classroom\\SubjectResult' => $baseDir . '/app/Model/Classroom/SubjectResult.php',
     'App\\Model\\User\\Admin' => $baseDir . '/app/Model/User/Admin.php',
     'App\\Model\\User\\Parents' => $baseDir . '/app/Model/User/Parents.php',
     'App\\Model\\User\\Student' => $baseDir . '/app/Model/User/Student.php',

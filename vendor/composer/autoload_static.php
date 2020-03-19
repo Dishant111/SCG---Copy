@@ -405,10 +405,6 @@ class ComposerStaticInit2ead6ff6b6b6a1bebac8b3a72b1109de
     );
 
     public static $classMap = array (
-        'App\\Classroom\\Model\\ClassRoom' => __DIR__ . '/../..' . '/app/Model/Classroom/ClassRoom.php',
-        'App\\Classroom\\Model\\ClassRoomStudent' => __DIR__ . '/../..' . '/app/Model/Classroom/ClassRoomStudent.php',
-        'App\\Classroom\\Model\\Subject' => __DIR__ . '/../..' . '/app/Model/Classroom/Subject.php',
-        'App\\Classroom\\Model\\SubjectResult' => __DIR__ . '/../..' . '/app/Model/Classroom/SubjectResult.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
@@ -419,6 +415,7 @@ class ComposerStaticInit2ead6ff6b6b6a1bebac8b3a72b1109de
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\admin\\adminController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/adminController.php',
+        'App\\Http\\Controllers\\ajaxController' => __DIR__ . '/../..' . '/app/Http/Controllers/ajaxController.php',
         'App\\Http\\Controllers\\loginController' => __DIR__ . '/../..' . '/app/Http/Controllers/loginController.php',
         'App\\Http\\Controllers\\page\\pageController' => __DIR__ . '/../..' . '/app/Http/Controllers/page/pageController.php',
         'App\\Http\\Controllers\\parent\\parentController' => __DIR__ . '/../..' . '/app/Http/Controllers/parent/parentController.php',
@@ -437,6 +434,11 @@ class ComposerStaticInit2ead6ff6b6b6a1bebac8b3a72b1109de
         'App\\Http\\Middleware\\parents' => __DIR__ . '/../..' . '/app/Http/Middleware/parents.php',
         'App\\Http\\Middleware\\student' => __DIR__ . '/../..' . '/app/Http/Middleware/student.php',
         'App\\Http\\Middleware\\teacher' => __DIR__ . '/../..' . '/app/Http/Middleware/teacher.php',
+        'App\\Model\\Classroom\\ClassRoom' => __DIR__ . '/../..' . '/app/Model/Classroom/ClassRoom.php',
+        'App\\Model\\Classroom\\ClassRoomStudent' => __DIR__ . '/../..' . '/app/Model/Classroom/ClassRoomStudent.php',
+        'App\\Model\\Classroom\\Stream' => __DIR__ . '/../..' . '/app/Model/Classroom/Stream.php',
+        'App\\Model\\Classroom\\Subject' => __DIR__ . '/../..' . '/app/Model/Classroom/Subject.php',
+        'App\\Model\\Classroom\\SubjectResult' => __DIR__ . '/../..' . '/app/Model/Classroom/SubjectResult.php',
         'App\\Model\\User\\Admin' => __DIR__ . '/../..' . '/app/Model/User/Admin.php',
         'App\\Model\\User\\Parents' => __DIR__ . '/../..' . '/app/Model/User/Parents.php',
         'App\\Model\\User\\Student' => __DIR__ . '/../..' . '/app/Model/User/Student.php',

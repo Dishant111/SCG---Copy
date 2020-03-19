@@ -37,7 +37,7 @@ class ClassRoomStudent extends Model
     }
     public function classroom()
     {
-        return $this->belongsTo('App\Model\Classroom\ClassRoom', 'classroom_id', 'class_id');
+        return $this->belongsTo('App\Model\Classroom\ClassRoom', 'classroom_id', 'classroom_id');
     }
     public function add($studentId, $teacherId, $classroomId)
     {

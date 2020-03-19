@@ -16,10 +16,10 @@ class Subjects extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->bigIncrements('subject_id');
             $table->string('name', 255);
-            $table->unsignedBigInteger('class_id');
-            $table->unsignedBigInteger('stream_id');
+            $table->unsignedBigInteger('classes_id');
+            // $table->unsignedBigInteger('stream_id');
             $table->string('description', 255)->nullable();
-            $table->foreign('class_id')->references('class_id')->on('classrooms');
+            $table->foreign('classes_id')->references('classes_id')->on('classes');
             // $table->foreign('stream_id')->references('stream_id')->on('streams');
             // $table->timestamps();
         });

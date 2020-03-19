@@ -17,7 +17,7 @@ class SubjectCareerfields extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('subject_id');
             $table->unsignedBigInteger('careerfield_id');
-            $table->timestamps();
+            // $table->timestamps();
             $table->foreign('subject_id')->references('subject_id')->on('subjects');
             $table->foreign('careerfield_id')->references('careerfield_id')->on('careerfields');
         });

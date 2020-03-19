@@ -13,15 +13,17 @@ class TestsAnswers extends Migration
      */
     public function up()
     {
-        Schema::create('test_asnwers', function (Blueprint $table) {
+        Schema::create('test_answers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('student_id');
-            $table->unsignedBigInteger('test_id');
+            $table->unsignedBigInteger('test_type_id');
             $table->unsignedBigInteger('question_id');
-            $table->unsignedBigInteger('option_id');
+            $table->unsignedBigInteger('option_id')->nullable();
+            $table->integer('std_answer')->nullable();
             $table->timestamps();
+            $table->foreign('test_type_id')->references('test_type_id')->on('test_types');
             $table->foreign('student_id')->references('student_id')->on('students');
-            $table->foreign('test_id')->references('test_id')->on('tests');
+            // $table->foreign('test_id')->references('test_id')->on('tests');
             $table->foreign('question_id')->references('id')->on('questions');
             $table->foreign('option_id')->references('id')->on('question_options');
         });
