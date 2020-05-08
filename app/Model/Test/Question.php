@@ -28,9 +28,14 @@ class Question extends Model
     protected $fillable = [
         'id', 'test_type_id', 'question_text', 'question_description', 'careerfield_id',
     ];
+    protected $with = ['option'];
     public function option()
     {
         return $this->hasMany('App\Model\Test\QuestionOption', 'question_id');
+    }
+    public function testType()
+    {
+        return $this->belongsTo('App\Model\Test\testType', 'test_type_id', 'test_type_id');
     }
     public function addWithOption($data)
     {

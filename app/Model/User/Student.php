@@ -3,6 +3,7 @@
 namespace App\Model\User;
 
 // use Illuminate\Database\Eloquent\Model;
+use DB;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
@@ -55,16 +56,59 @@ class Student extends Authenticatable
         return $this->hasMany('App\Model\Classroom\ClassRoomStudent', 'student_id');
     }
 
+    public function careerFields()
+    {
+        return $this->hasMany('App\Model\Test\finalCareer', 'student_id', 'student_id');
+    }
+    public function answer()
+    {
+        return $this->hasMany('App\Model\Test\TestAnswer', 'student_id', 'student_id');
+    }
     public function profile($id)
     {
-        $profile = Student::select('students.*', 'classrooms.*', 'classes.*', 'streams.*', 'classroom_students.*', 'parents.fname as parentFname', 'parents.lname as parentLname')->where('students.student_id', $id)->latest('students.updated_at')->join('classroom_students', 'students.student_id', '=', 'classroom_students.student_id')->join('classrooms', 'classroom_students.classroom_id', '=', 'classrooms.classroom_id')->join('classes', 'classrooms.classes_id', '=', 'classes.classes_id')->join('streams', 'streams.stream_id', '=', 'classes.stream_id')->join('parents', 'parents.parent_id', '=', 'students.parent_id')->get()->first();
+        $profile = Student::select('students.*', 'classrooms.*', 'classes.*', 'streams.*', 'classroom_students.*', 'parents.fname as parentFname', 'parents.lname as parentLname')
+            ->where('students.student_id', $id)
+            ->latest('students.updated_at')
+            ->join('classroom_students', 'students.student_id', '=', 'classroom_students.student_id')
+            ->join('classrooms', 'classroom_students.classroom_id', '=', 'classrooms.classroom_id')
+            ->join('classes', 'classrooms.classes_id', '=', 'classes.classes_id')
+            ->join('streams', 'streams.stream_id', '=', 'classes.stream_id')
+            ->join('parents', 'parents.parent_id', '=', 'students.parent_id')->get()->first();
         // $profile = Student::select('students.*', 'classrooms.*', 'streams.*', 'classroom_students.teacher_id as teacher_id', 'parents.fname as parentFname', 'parents.lname as parentLname')->where('students.student_id', $id)->latest('students.updated_at')->join('classroom_students', 'students.student_id', '=', 'classroom_students.student_id')->join('classrooms', 'classroom_students.classroom_id', '=', 'classrooms.class_id')->join('streams', 'streams.stream_id', '=', 'classrooms.stream_id')->join('parents', 'parents.parent_id', '=', 'students.parent_id')->get()->first();
         if ($profile) {
             return $profile;
         } else {
             return false;
         }
-
+    }
+    public function getAnswer($test_type_id)
+    {
+        return $this->answer()->where('test_type_id', $test_type_id)->with('questions')->get();
+    }
+    public function addAnswer($data, $testType)
+    {
+        // dd($this->answer()->get()->first());
+        // groupBy('test_type_id')->pluck('test_type_id')->toArray();
+        $answers = $this->answer()->groupBy('test_type_id')->pluck('test_type_id')->toArray();
+        if (!empty($answers)) {
+            if (in_array(1, $answers)) {
+                return false;
+            } else {
+                return $this->answer()->createMany($data);
+            }
+        } else {
+            return $this->answer()->createMany($data);
+        }
+        // if ($answers) {
+        //     if ($answers->test_type_id == $testType) {
+        //         return false;
+        //     } else {
+        //         return $this->answer()->createMany($data);
+        //     }
+        //     return false;
+        // } else {
+        //     return $this->answer()->createMany($data);
+        // }
     }
     public function add(Request $request)
     {
@@ -88,6 +132,7 @@ class Student extends Authenticatable
             'DOB' => date('Y-m-d', strtotime($request->input('DOB'))),
             'contact' => (string) $request->input('contact'),
         ];
+        // dd($data);
         return Student::create($data);
     }
     public function modify(Request $request)
@@ -111,5 +156,34 @@ class Student extends Authenticatable
         ];
 
         return Student::find($request->input('user_id'))->update($data);
+    }
+    public function addFinalCareer($studentId, $personalityType = [])
+    {
+        if (empty($personalityType)) {
+            return false;
+        } else {
+            // dd($this->profile($studentId)->stream_id);
+            // dd($personalityType);
+            $finalFields = DB::table('careerfields')
+                ->select('careerfields.*', 'personality_careerfields.*')
+                ->where([['careerfields.stream_id', $this->profile($studentId)->stream_id]])
+                ->whereIn('personality_careerfields.personality_type_id', $personalityType)
+                ->join('personality_careerfields', 'personality_careerfields.careerfield_id', '=', 'careerfields.careerfield_id')
+                ->get()->toArray();
+            // dd($finalFields);
+            $data = [];
+            foreach ($finalFields as $key => $value) {
+                // dd($value->field_name);
+                $nwdt = [
+                    'careerfield_id' => $value->careerfield_id,
+                    'personality_type_id' => $value->personality_type_id,
+                ];
+                array_push($data, $nwdt);
+            }
+            // dd($data);
+            $this->careerFields()->createMany($data);
+
+            return true;
+        }
     }
 }

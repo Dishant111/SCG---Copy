@@ -13,8 +13,9 @@ use Illuminate\Http\Request;
  */
 // General routes
 Route::get('/', function () {
+
     return view('page.welcome');
-})->name('welcome');
+})->name('welcome')->middleware('authValidate');
 Route::get('userlogin', 'page\pageController@loginPage')->name('loginPage')->middleware('authValidate');
 Route::post('userlogin', 'loginController@login')->name('login');
 
@@ -22,6 +23,10 @@ Route::post('userlogin', 'loginController@login')->name('login');
 Route::middleware('checkStudent')->group(function () {
     Route::get('/student/dashboard/{name}', 'student\studentController@dashboard')->name('studentDashBoard');
     Route::get('/student/profile/{name}', 'student\studentController@profile')->name('studentProfile');
+    Route::get('/student/test/{name}', 'student\studentController@testPage')->name('testPage');
+    Route::get('/student/personalitytest/{name}', 'student\studentController@perTestPage')->name('perTestPage');
+    Route::post('/student/personalitytest/{name}', 'student\studentController@perTest')->name('perTest');
+
     Route::get('/studentlogout', 'student\studentController@logout')->name('studentLogout');
 });
 

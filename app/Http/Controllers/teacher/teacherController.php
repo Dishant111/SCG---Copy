@@ -76,6 +76,7 @@ class teacherController extends Controller
         DB::beginTransaction();
         $student = new Student();
         $student = $student->add($request);
+        // dd($student);
         $data = [
             'stream_id' => $request->Stream,
             'class' => $request->class,

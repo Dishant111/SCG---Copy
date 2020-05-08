@@ -17,18 +17,20 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="#">
+                    <a href="{{route('welcome')}}">
                         <img src="/assets/images/logo2.png" alt="Mobirise" style="height: 3.8rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4" href="#">Student Career
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-4"
+                        href="{{route('welcome')}}">Student Career
                         Guidance</a></span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
-                <li class="nav-item"><a class="nav-link link text-white display-4" href="#" aria-expanded="false"><span
-                            class="mbrib-edit mbr-iconfont mbr-iconfont-btn"></span>
+                <li class="nav-item"><a class="nav-link link text-white display-4"
+                        href="{{route('testPage',['name'=> Auth::guard('student')->user()->fname])}}"
+                        aria-expanded="false"><span class="mbrib-edit mbr-iconfont mbr-iconfont-btn"></span>
 
                         Test</a></li>
                 <li class="nav-item">

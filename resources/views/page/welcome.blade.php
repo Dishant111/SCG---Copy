@@ -32,7 +32,7 @@
             <div class="media-container-row">
                 <div class="card p-3 align-center col-12 col-md-6">
                     <div class="panel-item p-3">
-                        <div class="card-img pb-3">
+                        <div class="card-img pb-3"> 
                             <span class="mbr-iconfont mobi-mbri-users mobi-mbri"></span>
                         </div>
 

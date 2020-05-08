@@ -22,8 +22,10 @@ class AuthValidate
         } elseif (Auth::guard('student')->check()) {
             return redirect(route('studentDashBoard', ['name' => Auth::guard('student')->user()->fname]));
         } elseif (Auth::guard('parent')->check()) {
+            // dd(Auth::guard('parent')->id());
             return redirect(route('parentDashBoard', ['name' => Auth::guard('parent')->user()->fname]));
         }
+        // dd(Auth::guard('parent')->id());
         return $next($request);
     }
 }

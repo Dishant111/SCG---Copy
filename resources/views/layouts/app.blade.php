@@ -33,6 +33,7 @@
     @elseif(Auth::guard('student')->check())
     @yield('studentheader',view('user.student.headerFooter.header'))
     @elseif(Auth::guard('parent')->check())
+    {{-- {{dd(Auth::guard('parent')->id())}} --}}
     @yield('parentheader',view('user.parent.headerFooter.header'))
     @else
     @yield('header',view('layouts.header'))
