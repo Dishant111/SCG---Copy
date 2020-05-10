@@ -24,8 +24,8 @@
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
-                <li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-4"
-                        href="https://mobirise.com" data-toggle="dropdown-submenu" aria-expanded="false"><span
+                <li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-4" href="#"
+                        data-toggle="dropdown-submenu" aria-expanded="false"><span
                             class="mobi-mbri mobi-mbri-users mbr-iconfont mbr-iconfont-btn"></span>
                         Parent</a>
                     <div class="dropdown-menu"><a class="text-white dropdown-item display-4"

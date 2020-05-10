@@ -15,12 +15,12 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="https://mobirise.com">
+                    <a href="#">
                         <img src="/assets/images/logo2.png" alt="Mobirise" style="height: 3.8rem;">
                     </a>
                 </span>
                 <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-5"
-                        href="https://mobirise.com">Student Career Guidance</a></span>
+                        href="#">Student Career Guidance</a></span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -35,7 +35,7 @@
                         aria-expanded="false"><span class="mbri-user mbr-iconfont mbr-iconfont-btn"></span>
                         Profile</a></li>
                 <li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-4"
-                        href="https://mobirise.com" aria-expanded="false" data-toggle="dropdown-submenu"><span
+                        href="#" aria-expanded="false" data-toggle="dropdown-submenu"><span
                             class="mobi-mbri mobi-mbri-users mbr-iconfont mbr-iconfont-btn"></span>
 
                         Children</a>
@@ -48,7 +48,7 @@
                                 class="socicon socicon-odnoklassniki mbr-iconfont mbr-iconfont-btn"></span>{{$child->fname}}</a>
                         @endforeach
                         @else
-                        <a class="text-white dropdown-item display-4" href="https://mobirise.com"
+                        <a class="text-white dropdown-item display-4" href="#"
                             aria-expanded="false"><span
                                 class="socicon socicon-odnoklassniki mbr-iconfont mbr-iconfont-btn"></span>child does
                             not exixt</a>

@@ -17,7 +17,11 @@ class ajaxController extends Controller
             ['classrooms.year', $request->year],
             ['class', $request->classes],
         ];
-        $data = Stream::select('subjects.subject_id', 'subjects.name')->where($inputdata)->join('classes', 'streams.stream_id', '=', 'classes.stream_id')->join('classrooms', 'classrooms.classes_id', '=', 'classes.classes_id')->join('subjects', 'subjects.classes_id', '=', 'classes.classes_id')->get();
+        $data = Stream::select('subjects.subject_id', 'subjects.name')
+        ->where($inputdata)
+        ->join('classes', 'streams.stream_id', '=', 'classes.stream_id')
+        ->join('classrooms', 'classrooms.classes_id', '=', 'classes.classes_id')
+        ->join('subjects', 'subjects.classes_id', '=', 'classes.classes_id')->get();
         // Stream::select('subjects.*')->where([['streams.stream_id', '1'], ['classrooms.year', 2019], ['class', '11']])->join('classes', 'streams.stream_id', '=', 'classes.stream_id')->join('classrooms', 'classrooms.classes_id', '=', 'classes.classes_id')->join('subjects', 'subjects.classes_id', '=', 'classes.classes_id')->get();
 
         return response()->json($data);

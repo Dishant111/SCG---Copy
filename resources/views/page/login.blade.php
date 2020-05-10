@@ -1,7 +1,7 @@
 @extends('layouts.App')
 @section('content')
 <div class="container container-md  justify-content-center" style="margin-top: 80px">
-
+{{-- {{dd(Hash::make('admin'))}} --}}
     <form action="{{route('login')}}" method="POST" class="mx-auto">
         @csrf
         <div class="row justify-content-md-center">

@@ -64,6 +64,10 @@ class Student extends Authenticatable
     {
         return $this->hasMany('App\Model\Test\TestAnswer', 'student_id', 'student_id');
     }
+    function testResults()
+    {
+        return $this->hasMany('App\Model\Test\TestResult', 'student_id', 'student_id');
+    }
     public function profile($id)
     {
         $profile = Student::select('students.*', 'classrooms.*', 'classes.*', 'streams.*', 'classroom_students.*', 'parents.fname as parentFname', 'parents.lname as parentLname')
@@ -81,8 +85,31 @@ class Student extends Authenticatable
             return false;
         }
     }
-    public function getAnswer($test_type_id)
+    function addResult($data)
     {
+        if (empty($data)) {
+            return false;
+        }else{
+            return $this->testResults()->createMany($data);
+        }
+    }
+    public function getSkillData($id)
+    {
+        return DB::table('students')
+        ->select('test_answers.test_type_id',DB::raw('sum(std_answer) as score'),'questions.careerfield_id')
+        ->where([['students.student_id','=',$id],['test_answers.test_type_id','=',2]])
+        ->join('test_answers','test_answers.student_id','=','students.student_id')
+        ->join('questions','questions.id','=','question_id')
+        ->groupBy(['questions.careerfield_id','students.student_id','test_answers.test_type_id'])
+        ->get();
+
+
+
+        
+
+    }
+    public function getAnswer($test_type_id)
+    {   
         return $this->answer()->where('test_type_id', $test_type_id)->with('questions')->get();
     }
     public function addAnswer($data, $testType)
@@ -91,7 +118,7 @@ class Student extends Authenticatable
         // groupBy('test_type_id')->pluck('test_type_id')->toArray();
         $answers = $this->answer()->groupBy('test_type_id')->pluck('test_type_id')->toArray();
         if (!empty($answers)) {
-            if (in_array(1, $answers)) {
+            if (in_array($testType, $answers)) {
                 return false;
             } else {
                 return $this->answer()->createMany($data);

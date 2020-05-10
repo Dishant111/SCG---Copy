@@ -81,14 +81,14 @@
                                 @else
                                 @if (in_array(2,$test))
                                 <div class="mbr-section-btn align-right">
-                                    <a href="#" class="btn btn-warnin  g-outline display-4">
+                                    <a href="{{route('skillTestPage',['name'=> Auth::guard('student')->user()->fname])}}" class="btn btn-warning-outline display-4">
                                         My Answers
                                     </a>
                                 </div>
                                 @else
                                 {{-- {{dd($test)}} --}}
                                 <div class="mbr-section-btn align-right">
-                                    <a href="#" class="btn btn-warning-outline display-4">
+                                    <a href="{{route('skillTestPage',['name'=> Auth::guard('student')->user()->fname])}}" class="btn btn-warning-outline display-4">
                                         Give Test
                                     </a>
                                 </div>

@@ -14,12 +14,12 @@
         <div class="menu-logo">
             <div class="navbar-brand">
                 <span class="navbar-logo">
-                    <a href="https://mobirise.com">
+                    <a href="#">
                         <img src="/assets/images/logo2.png" alt="Mobirise" style="height: 3.8rem;">
                     </a>
                 </span>
-                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-5"
-                        href="https://mobirise.com">Student Career Guidance</a></span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-5" href="#">Student Career
+                        Guidance</a></span>
             </div>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">

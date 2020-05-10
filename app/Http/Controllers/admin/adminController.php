@@ -27,6 +27,7 @@ class adminController extends Controller
     {
         if (Auth::guard('admin')->attempt(['admin_id' => $request->input('id'), 'password' => $request->input('password')])) {
             return redirect(route('adminDashboard', ['name' => Auth::guard('admin')->user()->fname]));
+            // return redirect('admin/dashboard');
         } else {
             return redirect(route('adminLoginPage'))->with('msg', 'Login Fail');
         }

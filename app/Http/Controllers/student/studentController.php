@@ -4,6 +4,7 @@ namespace App\Http\Controllers\student;
 
 use App\Http\Controllers\Controller;
 use App\Model\Test\TestType;
+use App\Model\Test\Question;
 use App\Model\User\Student;
 use DB;
 use Illuminate\Http\Request;
@@ -23,7 +24,6 @@ class studentController extends Controller
     }
     public function perTestPage()
     {
-
         $student = Student::find(Auth::guard('student')->id());
         $test = $student->answer()->groupBy('test_type_id')->pluck('test_type_id')->toArray();
         if (in_Array(1, $test)) {
@@ -37,6 +37,103 @@ class studentController extends Controller
         // dd($testtypes->toArray());
 
     }
+   public function skillTestPage()
+    {
+        $student = Student::find(Auth::guard('student')->id());
+        $test = $student->answer()->groupBy('test_type_id')->pluck('test_type_id')->toArray();
+        if (in_Array(2, $test)) {
+            $answers = $student->getAnswer(2);
+            // dd($answers);
+            return view('user.student.test.skillTest')->with('answers', $answers);
+            // return view('user.student.test.personalityTest')->with('answers', $answers);
+        } else {
+            $careerfield=$student->careerFields()->get()->pluck('careerfield_id')->toArray();
+            // array_push($careerfield,4);
+            $testtypes = new TestType();
+            $testtypes = $testtypes->getQuestions(2,$careerfield);
+            $questions = [];
+            foreach ($testtypes as $fields) {
+                foreach ($fields->questions as $question) {
+                    array_push($questions,$question);
+                }
+            }     
+            // dd($questions);
+            // dd($testtypes);
+            return view('user.student.test.skillTest')->with('questions', $questions);
+            // return view('user.student.test.personalityTest')->with('testtypes', $testtypes->toArray());
+        }
+    }
+   public function skillTest(Request $request)
+    {
+        DB::beginTransaction();
+        // DB::enableQueryLog();
+        $data = $request->except('_token');
+        // dd($data);
+        // $data = array_chunk($data, 1, true);
+        $newdata = [];
+        // $id = Auth::guard('student')->id();
+
+        foreach ($data as $key => $value) {
+            $newdt = [
+                // 'student_id' => $id,
+                'test_type_id' => '2',
+                'question_id' => $key,
+                'std_answer' => $value,
+            ];
+            array_push($newdata, $newdt);
+        }
+
+        $student = Student::find(Auth::guard('student')->id());
+
+        if ($student->addAnswer($newdata, 2)) {
+
+            // dd(DB::getQueryLog());
+            // DB::rollBack(); //temp rollback
+            
+            $skData=$student->getSkillData(Auth::guard('student')->id())->toArray();
+            $skData=json_decode(json_encode($skData), true);
+            $careerf=[];
+            foreach ($skData as $result) {
+                // $result['careerfield_id'];
+                array_push($careerf, $result['careerfield_id']);
+            }
+            $q= new Question();
+            $q=$q->totalQuestion($careerf);
+            // dd($skData);
+            // dd($q->totalQuestion($careerf)->toArray());
+            foreach ($skData as &$result) {
+                // dd($skData);
+                // dd($result);
+                foreach ($q as $total) {
+                    // dd($skData);
+                    // dd($result['score']);
+                    if ($total->careerfield_id == $result['careerfield_id'] ) {
+                        // dd($result['score']);
+                        // dd((int)$result['score'] * 50/($total->totalq*10));
+                        $result['score']=(int)(((int)$result['score']) * 50/($total->totalq*10)); 
+                        // $result['score']=10;
+                        // dd($result['score']);
+                    }
+                }
+            }
+            // dd($skData);
+            if ($student->addResult($skData)) {
+                DB::commit();
+            }else{
+                DB::rollBack();
+            }
+            // DB::commit();
+            $request->session()->flash('testmsg', 'Skill Test given Successfully');
+            return redirect()->route('testPage', ['name' => Auth::guard('student')->user()->fname]);
+        } else {
+            DB::rollBack();
+            $request->session()->flash('testmsg', 'There are some problem try again latter');
+            return redirect()->route('testPage', ['name' => Auth::guard('student')->user()->fname]);
+        }
+        DB::rollBack();
+        
+    }
+
     public function perTest(Request $request)
     {
         DB::beginTransaction();

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Model\Test;
-
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
@@ -37,6 +37,11 @@ class Question extends Model
     {
         return $this->belongsTo('App\Model\Test\testType', 'test_type_id', 'test_type_id');
     }
+    function careerFields()
+    {
+        return $this->belongsTo('App\Model\Test\careerfields', 'careerfield_id', 'careerfield_id');
+
+    }
     public function addWithOption($data)
     {
         $question = new Question();
@@ -55,5 +60,9 @@ class Question extends Model
             ],
         ]);
         return $question;
+    }
+    public function totalQuestion($careerFields= [])
+    {
+        return DB::table('questions')->select('careerfield_id',DB::raw('count(careerfield_id) as totalq'))->whereIn('careerfield_id',$careerFields)->groupBy('careerfield_id')->get();
     }
 }

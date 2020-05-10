@@ -24,8 +24,12 @@ Route::middleware('checkStudent')->group(function () {
     Route::get('/student/dashboard/{name}', 'student\studentController@dashboard')->name('studentDashBoard');
     Route::get('/student/profile/{name}', 'student\studentController@profile')->name('studentProfile');
     Route::get('/student/test/{name}', 'student\studentController@testPage')->name('testPage');
+
     Route::get('/student/personalitytest/{name}', 'student\studentController@perTestPage')->name('perTestPage');
     Route::post('/student/personalitytest/{name}', 'student\studentController@perTest')->name('perTest');
+
+    Route::get('/student/skilltest/{name}', 'student\studentController@skillTestPage')->name('skillTestPage');
+    Route::post('/student/skilltest/{name}', 'student\studentController@skillTest')->name('skillTest');
 
     Route::get('/studentlogout', 'student\studentController@logout')->name('studentLogout');
 });
@@ -86,14 +90,15 @@ Route::middleware('checkParents')->group(function () {
 });
 // admin
 Route::middleware('checkAdmin')->group(function () {
-
+    Route::get('admin/dashboard', 'admin\adminController@dashboard')->name('adminDashboard');
+    Route::get('adminLogout', 'admin\adminController@logout')->name('adminLogout');
+    Route::get('/admin/createteacher', function () {
+        return view('user\admin\createTeacher');
+    })->name('createTeacherPage');
+    Route::post('createTeacher', 'admin\adminController@createTeacher')->name('createTeacher');
 });
-Route::get('/admin/createteacher', function () {
-    return view('user\admin\createTeacher');
-})->name('createTeacherPage');
-Route::post('createTeacher', 'admin\adminController@createTeacher')->name('createTeacher');
-Route::get('admin/dashboard', 'admin\adminController@dashboard')->name('adminDashboard');
-Route::get('adminLogout', 'admin\adminController@logout')->name('adminLogout');
+
+
 Route::get('adminlogin', 'admin\adminController@loginPage')->name('adminLoginPage');
 Route::post('adminlogin', 'admin\adminController@login')->name('adminLogin');
 Route::get('/addPersonalityQuestion', function () {

@@ -8,7 +8,7 @@
         <div class="media-container-row content text-white">
             <div class="col-12 col-md-3">
                 <div class="media-wrap">
-                    <a href="https://mobirise.co/">
+                    <a href="#">
                         <img src="/assets/images/logo22.png" alt="Mobirise">
                     </a>
                 </div>
@@ -25,8 +25,8 @@
             </div>
             <div class="col-12 col-md-3 mbr-fonts-style display-7">
                 <h5 class="pb-3">PSYCHOMETRIC TEST</h5>
-                <p class="mbr-text"><a class="text-primary" href="https://mobirise.co/">Personality Based Test</a><br><a
-                        class="text-primary" href="https://mobirise.co/">Skill Based Test</a>&nbsp;<br></p>
+                <p class="mbr-text"><a class="text-primary" href="#">Personality Based Test</a><br><a
+                        class="text-primary" href="#">Skill Based Test</a>&nbsp;<br></p>
             </div>
         </div>
         <div class="footer-lower">
@@ -44,17 +44,17 @@
                 <div class="col-md-6">
                     <div class="social-list align-right">
                         <div class="soc-item">
-                            <a href="https://twitter.com/mobirise" target="_blank">
+                            <a href="https://twitter.com/#" target="_blank">
                                 <span class="socicon-twitter socicon mbr-iconfont mbr-iconfont-social"></span>
                             </a>
                         </div>
                         <div class="soc-item">
-                            <a href="https://www.facebook.com/pages/Mobirise/1616226671953247" target="_blank">
+                            <a href="https://www.facebook.com/" target="_blank">
                                 <span class="socicon-facebook socicon mbr-iconfont mbr-iconfont-social"></span>
                             </a>
                         </div>
                         <div class="soc-item">
-                            <a href="https://www.youtube.com/c/mobirise" target="_blank">
+                            <a href="https://www.youtube.com/" target="_blank">
                                 <span class="socicon-youtube socicon mbr-iconfont mbr-iconfont-social"></span>
                             </a>
                         </div>

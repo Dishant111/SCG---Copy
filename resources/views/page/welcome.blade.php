@@ -138,8 +138,12 @@
                         <div class="step-text-content">
                             <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">Personality test</h4>
                             <p class="mbr-step-text mbr-fonts-style display-7">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat libero, bibendum in
-                                libero tempor, luctus volutpat ligula. Integer fringilla porttitor pretium.
+                                Take this free Personality Test and find out more about who you are and your strengths.
+                                This is valuable information for choosing a career. This personality quiz measures the
+                                personality traits that were developed over three or four decades by several independent
+                                scientific researchers.
+
+
                             </p>
                         </div>
                     </div>
@@ -155,8 +159,10 @@
                         <div class="step-text-content">
                             <h4 class="mbr-step-title pb-3 mbr-fonts-style display-5">Skill based test</h4>
                             <p class="mbr-step-text mbr-fonts-style display-7">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat libero, bibendum in
-                                libero tempor, luctus volutpat ligula. Integer fringilla porttitor pretium.</p>
+                                In order for companies, firms and organizations to effectively and efficiently gauge
+                                where their staff is in terms of performance they use a variety of assessment tools.
+                                These are used to evaluate the potential employee on whether or not they possess the
+                                necessary skills required to perform the job in question</p>
                         </div>
                     </div>
                 </div>
