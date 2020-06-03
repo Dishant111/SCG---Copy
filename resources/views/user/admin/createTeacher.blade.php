@@ -7,8 +7,8 @@
 
 @section('content')
 
-<section class="counters4 counters cid-rSh8OQehtA" id="counters4-t">
-    <div class="container pt-4 mt-2">
+<section class="container container-md  justify-content-center" id="margin-top: 80px">
+    <div class="">
         <div class="container  justify-content-center">
             <form action="{{route('createTeacher')}}" method="POST" class="">
                 @csrf
@@ -107,8 +107,8 @@
     <div class="row justify-content-md-center">
         <div class="col col-md-6">
             <div class="form-group">
-                <label for="formGroupExampleInput">{{__("Re-enter Password")}}</label>
-                <input type="password" name="re_password" class="form-control" id="re_password"
+                <label for="formGroupExampleInput">{{__("confirm Password")}}</label>
+                <input type="password" name="password_confirmation" class="form-control" id="re_password"
                     placeholder="Renter Password" required>
                 <div class="valid-feedback">
                 </div>

@@ -5,6 +5,7 @@
     type="text/css" />
 @endsection
 @section('content')
+{{-- {{dd(Session::get('student'))}} --}}
 <section class="counters4 counters cid-rSh8OQehtA" id="counters4-t">
     <div class="container pt-4 mt-2">
         <div class="studentdetails mt-3" style="display: ">

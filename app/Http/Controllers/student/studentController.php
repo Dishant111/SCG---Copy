@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Auth;
 
 class studentController extends Controller
 {
+    
+    function recommandations()
+    {
+        $student = Student::find(Auth::guard('student')->id());
+        $personalityData = $student->answer()->select(DB::raw('count(*) as max_count, personality_types.name,personality_types.personality_type_id'))->join('question_options', 'test_answers.option_id', '=', 'question_options.id')->join('personality_types','personality_types.personality_type_id','=','question_options.personality_type_id')->groupBy(['personality_types.personality_type_id','personality_types.name'])->orderBy('max_count','desc')->get()->toArray();
+        // dd($type);
+        return view('user/student/recommandation')->with('personalityData',$personalityData);
+    }
     public function testPage()
     {
         // dd($testmsg);
@@ -157,7 +165,11 @@ class studentController extends Controller
 
         if ($student->addAnswer($newdata, 1)) {
 
-            $type = $student->answer()->select(DB::raw('count(*) as max_count, personality_type_id'))->join('question_options', 'test_answers.option_id', '=', 'question_options.id')->groupBy('personality_type_id')->get()->toArray();
+            $type = $student->answer()
+            ->select(DB::raw('count(*) as max_count, personality_type_id'))
+            ->join('question_options', 'test_answers.option_id', '=', 'question_options.id')
+            ->groupBy('personality_type_id')
+            ->orderBy('max_count','desc')->get()->toArray();
             arsort($type);
             $personalityType = [$type[(int) array_key_first($type)]['personality_type_id']];
             $student->addFinalCareer(Auth::guard('student')->id(), $personalityType);

@@ -54,7 +54,8 @@ class Teacher extends Authenticatable
             'lname' => 'nullable|max:255',
             'user_id' => 'required|min:2|max:255',
             'email' => 'required|email',
-            'password' => 'required|min:5|max:255',
+            'password' => 'required|min:5|max:255|confirmed',
+            
             'contact' => 'nullable|min:10|max:10',
         ]);
         $data = [

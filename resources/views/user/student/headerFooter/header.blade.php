@@ -34,8 +34,8 @@
 
                         Test</a></li>
                 <li class="nav-item">
-                    <a class="nav-link link text-white display-4" href="#" aria-expanded="true"><span
-                            class="mbrib-photo mbr-iconfont mbr-iconfont-btn"></span>Recommandation</a>
+                <a class="nav-link link text-white display-4" href="{{route('recommandations',['name'=> Auth::guard('student')->user()->fname])}}" aria-expanded="true"><span
+                            class="mbrib-photo mbr-iconfont mbr-iconfont-btn"></span>Results</a>
                 </li>
                 <li class="nav-item"><a class="nav-link link text-white display-4"
                         href="{{route('studentProfile',['name'=> Auth::guard('student')->user()->fname])}}"><span

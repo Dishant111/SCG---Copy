@@ -31,6 +31,7 @@ Route::middleware('checkStudent')->group(function () {
     Route::get('/student/skilltest/{name}', 'student\studentController@skillTestPage')->name('skillTestPage');
     Route::post('/student/skilltest/{name}', 'student\studentController@skillTest')->name('skillTest');
 
+    Route::get('/student/recommandation/{name}', 'student\studentController@recommandations')->name('recommandations');
     Route::get('/studentlogout', 'student\studentController@logout')->name('studentLogout');
 });
 
@@ -64,7 +65,7 @@ Route::middleware('checkTeacher')->group(function () {
     Route::post('teacher/{name}/academic', function (Request $request) {
         // dd($request->student_id);
         // dd($request->all());
-        $request->session()->flash('student', $request->all());
+        \Session::flash('student', $request->except(['_token']));
 
         return redirect(route('result', ['name' => Auth::guard('teacher')->user()->fname]));
     })->name('academic');

@@ -17,6 +17,7 @@ class ajaxController extends Controller
             ['classrooms.year', $request->year],
             ['class', $request->classes],
         ];
+        $request->session()->keep(['student']);
         $data = Stream::select('subjects.subject_id', 'subjects.name')
         ->where($inputdata)
         ->join('classes', 'streams.stream_id', '=', 'classes.stream_id')

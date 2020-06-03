@@ -17,11 +17,6 @@ use Illuminate\Support\Facades\Auth;
 
 class teacherController extends Controller
 {
-
-    // public function createStudent(Request $request)
-    // {
-    //     # code...
-    // }
     public function result(Request $request)
     {
         $year = new ClassRoom();
@@ -29,7 +24,7 @@ class teacherController extends Controller
         $classes = new Classes();
         $classes = $classes->getClasses();
         $request->session()->reflash();
-        return view('user.teacher.addResult')->with('student', $request->session()->all())->with('years', $year)->with('classes', $classes);
+        return view('user.teacher.addResult')->with('years', $year)->with('classes', $classes);
     }
     public function addResult(Request $request)
     {
@@ -39,9 +34,10 @@ class teacherController extends Controller
             'marks' => $request->marks,
         ];
         $result = new SubjectResult();
+        \Session::flash('student', $request->except(['_token']));
         if ($result->make($data)) {
             return back()->with('msg', 'result added');
-        } else {
+        } else { 
             return back()->with('msg', 'failed');
         }
 
