@@ -23,8 +23,13 @@ class teacherController extends Controller
         $year = $year->getYears();
         $classes = new Classes();
         $classes = $classes->getClasses();
+        // dd(\Session::get('student')['student_id']);
+        $res=SubjectResult::studentResult(\Session::get('student')['student_id']);
+        // dd($res);
         $request->session()->reflash();
-        return view('user.teacher.addResult')->with('years', $year)->with('classes', $classes);
+
+
+        return view('user.teacher.addResult')->with('years', $year)->with('classes', $classes)->with('res',$res);
     }
     public function addResult(Request $request)
     {
@@ -69,18 +74,35 @@ class teacherController extends Controller
     }
     public function createStudent(Request $request)
     {
+
+        $request->validate([
+            'fname' => 'required|min:2|max:255',
+            'lname' => 'nullable|max:255',
+            'user_id' => 'required|min:2|max:255',
+            'parent_id' => 'required|min:2|max:255',
+            'email' => 'required|email',
+            'password' => 'required|min:5|max:255',
+            'contact' => 'nullable|min:10|max:10',
+        ]);
+
         DB::beginTransaction();
         $student = new Student();
         $student = $student->add($request);
+        if ($student == false) {
+            DB::rollBack();
+            return back()->with(['msg' => 'Student Already Exist']);
+        }
         // dd($student);
+        // dd($request);
         $data = [
             'stream_id' => $request->Stream,
             'class' => $request->class,
             'year' => $request->StreamYear,
         ];
+        // dd($data);
         $classroom = new ClassRoom();
         $classroom = $classroom->getClass($data);
-        // dd($classroom->classroom_id);
+        // dd($classroom);
         $ClassRoomStudent = new ClassRoomStudent();
         $ClassRoomStudent = $ClassRoomStudent->add($student->student_id, Auth::guard('teacher')->id(), $classroom->classroom_id);
         if ($student && $ClassRoomStudent) {

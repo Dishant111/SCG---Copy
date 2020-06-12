@@ -6,6 +6,9 @@
 @endsection
 @section('content')
 {{-- {{dd(Session::get('student'))}} --}}
+
+
+{{-- {{dd($res)}} --}}
 <section class="counters4 counters cid-rSh8OQehtA" id="counters4-t">
     <div class="container pt-4 mt-2">
         <div class="studentdetails mt-3" style="display: ">
@@ -60,6 +63,43 @@
         </div>
 </section>
 
+@if (isset($res) && !empty($res))
+    
+<section class="section-table cid-rTcdVPEsHR" id="table1-1t">
+  
+    <div class="container container-table">
+        <h2 class="mbr-section-title mbr-fonts-style align-center pb-3 display-2">
+            Results 
+        </h2>
+        {{-- <h3 class="mbr-section-subtitle mbr-fonts-style align-center pb-5 mbr-light display-5">
+            please enter result only once per subjcet.     
+        </h3> --}}
+        <div class="table-wrapper">
+  
+          <div class="container scroll">
+            <table class="table isSearch" cellspacing="0">
+                <thead>
+                    <tr class="table-heads ">
+                        <th class="head-item mbr-fonts-style display-7">Subject id</th>
+                        <th class="head-item mbr-fonts-style display-7">Subject name</th>
+                        <th class="head-item mbr-fonts-style display-7">Marks</th>
+                </thead>
+
+                <tbody>
+                    @foreach ($res as $rs)
+                    <tr>
+                        <td class="body-item mbr-fonts-style display-7">{{$rs->subject_id}}</td>
+                        <td class="body-item mbr-fonts-style display-7">{{$rs->name}}</td>
+                        <td class="body-item mbr-fonts-style display-7">{{$rs->marks}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  </section>
+@endif
 @endsection
 @section('js')
 <script>

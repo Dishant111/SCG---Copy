@@ -159,6 +159,11 @@ class Student extends Authenticatable
             'DOB' => date('Y-m-d', strtotime($request->input('DOB'))),
             'contact' => (string) $request->input('contact'),
         ];
+        
+        
+        if ($st=Student::find($request->input('user_id'))) {
+            return false;
+        }
         // dd($data);
         return Student::create($data);
     }

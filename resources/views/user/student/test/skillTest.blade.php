@@ -192,11 +192,11 @@
 
                     @if ($qindex == $length)
                             </ul>
-                            <hr>
+                            {{-- <hr>
                             <div class="mbr-section-btn">
                                 <input type="button" id="submit-btn" class="btn btn-warning-outline" value="submit">
                             </div>
-                            <hr>
+                            <hr> --}}
                         </div>
                     @else
                         @if ($qindex == ($page*$maxCount))

@@ -49,7 +49,10 @@ class ClassRoom extends Model
             ['year', $data['year']],
         ];
         // dd($newdata);
-        return ClassRoom::select('classrooms.*', 'classes.*')->where($newdata)->join('classes', 'classes.classes_id', '=', 'classrooms.classes_id')->get()->first();
+        return ClassRoom::select('classrooms.*', 'classes.*')
+        ->where($newdata)
+        ->join('classes', 'classes.classes_id', '=', 'classrooms.classes_id')
+        ->get()->first();
     }
 
     // public function subjects()

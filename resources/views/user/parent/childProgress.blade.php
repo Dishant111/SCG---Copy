@@ -1,4 +1,9 @@
 @extends('layouts.app')
+{{-- {{dd($childrens)}} --}}
+@section('parentheader')
+{{-- {{dd($childrens)}} --}}
+{{view('user.parent.headerFooter.header')->with('childrens',$childrens)}}
+@endsection
 @section('js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
     
@@ -29,7 +34,7 @@ if (isset($finalResult)) {
     <div class="container pt-4 mt-2">
         @if (  (isset($personalityData) && empty($personalityData) ) && !$Displaycareer )
         <div class="alert alert-warning" role="alert">
-              <strong> please finish your tests first.</strong> 
+              <strong> Children tests are remaining.</strong> 
         </div>
         @endif
         {{-- {{dd(empty($personalityData))}} --}}
@@ -52,6 +57,8 @@ if (isset($finalResult)) {
       
 
         @endif
+        <div class="mbr-section-btn align-left"><a href="{{route('childAcedemic',['child'=>$id])}}" class="btn btn-warning-outline display-7">
+            Acedemic results</a></div>
     </div>
 
 </section>

@@ -86,7 +86,8 @@ Route::middleware('checkTeacher')->group(function () {
 Route::middleware('checkParents')->group(function () {
     Route::get('/parent/dashboard/{name}', 'parent\parentController@dashBoard')->name('parentDashBoard');
     Route::get('/parent/profile/{name}', 'parent\parentController@profile')->name('parentProfile');
-    Route::get('/parent/child/{child}', 'parent\parentController@child')->name('childProfile');
+    Route::get('/parent/career/{child}', 'parent\parentController@childRecommandation')->name('childProfile');
+    Route::get('/parent/acedemic/{child}', 'parent\parentController@acedemic')->name('childAcedemic');
     Route::get('parentLogout', 'parent\parentController@logout')->name('parentLogout');
 });
 // admin

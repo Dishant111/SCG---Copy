@@ -9,16 +9,26 @@ use App\Model\User\Student;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Model\Test\finalCareer;
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
 class studentController extends Controller
 {
     
     function recommandations()
     {
         $student = Student::find(Auth::guard('student')->id());
-        $personalityData = $student->answer()->select(DB::raw('count(*) as max_count, personality_types.name,personality_types.personality_type_id'))->join('question_options', 'test_answers.option_id', '=', 'question_options.id')->join('personality_types','personality_types.personality_type_id','=','question_options.personality_type_id')->groupBy(['personality_types.personality_type_id','personality_types.name'])->orderBy('max_count','desc')->get()->toArray();
+        $personalityData = $student->answer()
+        ->select(DB::raw('count(*) as max_count, personality_types.name,personality_types.personality_type_id'))
+        ->join('question_options', 'test_answers.option_id', '=', 'question_options.id')
+        ->join('personality_types','personality_types.personality_type_id','=','question_options.personality_type_id')
+        ->groupBy(['personality_types.personality_type_id','personality_types.name'])
+        ->orderBy('max_count','desc')->get()->toArray();
+
+        $finalResult = finalCareer::getFinalData(Auth::guard('student')->id());
+        // dd($finalResult);
         // dd($type);
-        return view('user/student/recommandation')->with('personalityData',$personalityData);
+        return view('user/student/recommandation')->with('personalityData',$personalityData)->with('finalResult',$finalResult);
     }
     public function testPage()
     {
@@ -127,6 +137,51 @@ class studentController extends Controller
             // dd($skData);
             if ($student->addResult($skData)) {
                 DB::commit();
+                $id= Auth::guard('student')->id();
+                $command = escapeshellcmd("python FuzzyLogicFinalScript.py  $id");
+                // // $command = escapeshellcmd('dir');
+                // // dd($command);
+                $tmp = shell_exec("$command");
+                // dd($tmp);
+                // 111111111111111111
+                
+                // $id= Auth::guard('student')->id();
+                // $tmp = shell_exec("python FuzzyLogicFinalScript.py  $id");
+                // dd($tmp);
+                // $last_line=system("python FuzzyLogicFinalScript.py $id");
+                // dd($last_line);
+// 222222222222222222222
+
+                // $result= shell_exec("python ". "FuzzyLogicFinalScript.py " . escapeshellarg(Auth::guard('student')->id()));
+                // dd($result);
+
+                // $process = new Process(['python','FuzzyLogicFinalScript.py',Auth::guard('student')->id()]);
+                // $process->run();
+
+              
+                // $process->run();
+              
+                // executes after the command finishes
+                // if (!$process->isSuccessful()) {
+                    
+                //     DB::rollBack();
+                //     throw new ProcessFailedException($process);
+                //     dd($process->getOutput());
+                //     $request->session()->flash('testmsg', 'There are some problem try again latter');
+                //     return redirect()->route('testPage', ['name' => Auth::guard('student')->user()->fname]);
+                // }
+                
+                // dd($process->getOutput());
+
+// 3333333333333
+// $id= Auth::guard('student')->id();
+// $command = escapeshellcmd("python FuzzyLogicFinalScript.py  $id");
+// // $command = escapeshellcmd('dir');
+// dd($command);
+// $tmp = shell_exec("$command");
+// dd($tmp);
+//                 // DB::rollBack();
+                // DB::commit();
             }else{
                 DB::rollBack();
             }

@@ -93,6 +93,8 @@
     <script src="/assets/dropdown/js/navbar-dropdown.js"></script>
     <script src="/assets/touchswipe/jquery.touch-swipe.min.js"></script>
     <script src="/assets/smoothscroll/smooth-scroll.js"></script>
+    <script src="/assets/dropdown/js/script.min.js"></script>
+   <script src="/assets/as-pie-progress/jquery-as-pie-progress.min.js"></script>
     <script src="/assets/viewportchecker/jquery.viewportchecker.js"></script>
     <script src="/assets/theme/js/script.js"></script>
     @yield('js')

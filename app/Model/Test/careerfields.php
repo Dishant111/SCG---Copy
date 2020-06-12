@@ -21,4 +21,7 @@ class careerfields extends Model
         // return 'hello';
         return $this->hasMany('App\Model\Test\Question','careerfield_id');
     }
+    public function finalCareer(){
+        return $this->hasMany('App\Model\Test\finalCareer','careerfield_id');
+    }
 }

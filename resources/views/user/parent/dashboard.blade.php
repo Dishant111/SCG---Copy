@@ -35,8 +35,10 @@
                             <label><strong>{{__("Contact :")}}</strong></label>{{$child->contact}} <br>
                         </p>
                         <!--Btn-->
-                        <div class="mbr-section-btn align-left"><a href="#" class="btn btn-warning-outline display-7">
-                                View</a></div>
+                        <div class="mbr-section-btn align-left"><a href="{{route('childAcedemic',['child'=>$child->student_id])}}" class="btn btn-warning-outline display-7">
+                            Acedemic results</a></div>
+                        <div class="mbr-section-btn align-left"><a href="{{route('childProfile',['child'=>$child->student_id])}}" class="btn btn-warning-outline display-7">
+                                Career field Suggestion</a></div>
                     </div>
                 </div>
             </div>

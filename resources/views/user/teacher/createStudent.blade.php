@@ -144,7 +144,7 @@
                             <div class="col-md-6 mb-3">
                                 <div class="form-group">
                                     <label for="formGroupExampleInput">{{__("Re-enter Password")}}</label>
-                                    <input type="password" name="re_password" class="form-control" id="re_password"
+                                    <input type="password" name="password_confirmation" class="form-control" id="re_password"
                                         placeholder="Renter Password" required>
                                     <div class="valid-feedback">
                                     </div>

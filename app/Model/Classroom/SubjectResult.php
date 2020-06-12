@@ -2,6 +2,7 @@
 
 namespace App\Model\Classroom;
 
+use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class SubjectResult extends Model
@@ -28,6 +29,7 @@ class SubjectResult extends Model
         'id', 'student_id', 'subject_id', 'marks',
     ];
     public $timestamps = false;
+    protected $with = ['subject'];
     public function student()
     {
         return $this->belongsTo('App\Model\User\Student', 'student_id', 'student_id');
@@ -38,10 +40,20 @@ class SubjectResult extends Model
     }
     public function make($data)
     {
+        // SubjectResult::find(['student_id' => $data['student_id'],'subject_id' => $data['subject_id']]);
+        // SubjectResult::find();
+        $res=SubjectResult::where(['student_id' => $data['student_id'],'subject_id' => $data['subject_id']])->get()->toArray();
+        if (!empty($res)) {
+           return false; 
+        }
         return SubjectResult::create($data);
     }
-    // function getResult($id)
-    // {
-         
-    // }
+    public static function studentResult($id)
+    {
+       return DB::table('students')
+        ->select('students.student_id','subject_results.*','subjects.*')
+        ->join('subject_results','subject_results.student_id','=','students.student_id')
+        ->join('subjects','subjects.subject_id','=','subject_results.subject_id')
+        ->where('students.student_id',$id)->get();
+    }
 }
