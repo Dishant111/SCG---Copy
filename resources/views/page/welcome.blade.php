@@ -118,9 +118,9 @@
     <div class="container">
         <h2 class="mbr-section-title pb-3 mbr-fonts-style align-center display-2">
             How it Works?</h2>
-        <h3 class="mbr-section-subtitle pb-5 mbr-fonts-style align-center display-5">
+        {{--  <h3 class="mbr-section-subtitle pb-5 mbr-fonts-style align-center display-5">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit
-        </h3>
+        </h3>  --}}
         <div class="media-container-row">
             <div class="media-block" style="width: 46%;">
                 <div class="mbr-figure">

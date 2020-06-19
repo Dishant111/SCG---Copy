@@ -1,6 +1,5 @@
 import sqlalchemy as db
 import numpy as np
-
 from skfuzzy import control as ctrl
 import skfuzzy as fuzz
 import matplotlib.pyplot as plt
@@ -15,7 +14,7 @@ metadata = db.MetaData()
 def get_subject_score(c):
     subject_careerfields = db.Table('subject_careerfields', metadata, autoload=True, autoload_with=engine)
     subject_results = db.Table('subject_results', metadata, autoload=True, autoload_with=engine)
-    # select AVG(marks) from  subject_results where student_id = "STD001" and subject_id=(select subject_id from subject_careerfields where careerfield_id = 7 );
+    # select AVG(marks) from  subject_results where student_id = "STD001" and subject_id IN (select subject_id from subject_careerfields where careerfield_id =7 );
     sbquery = db.select([subject_careerfields.columns.subject_id]).where(subject_careerfields.columns.careerfield_id == c)
     query3 = db.select([func.avg(subject_results.columns.marks)]).where(db.and_(subject_results.columns.student_id == std_id, subject_results.columns.subject_id.in_(sbquery)))
     ResultProxy3 = connection.execute(query3)
@@ -121,9 +120,9 @@ def fuzzy_logic_algo(sb, sk, crf):
     # view results and print results
     print("Success Rate:", ans)
     update_scs_rate(ans, crf)
-    #sucsratio.view(sim=sucs_rate_final)
- #   plt.savefig("Graphs/Success_rate_graph_Output.pdf")  # to save figue in to PDF format
-   # plt.savefig("Graphs/Succeess_rate_graph_Output.png")  # to save figue in to PNG format '''
+    # sucsratio.view(sim=sucs_rate_final)
+    # plt.savefig("Graphs/Success_rate_graph_Output.pdf")  # to save figue in to PDF format
+    # plt.savefig("Graphs/Succeess_rate_graph_Output.png")  # to save figue in to PNG format '''
 
 
 def update_scs_rate(scrt, crfd):
