@@ -16,7 +16,7 @@
             <div class="navbar-brand">
                 <span class="navbar-logo">
                     <a href="#">
-                        <img src="/assets/images/logo2.png" alt="Mobirise" style="height: 3.8rem;">
+                        <img src="{{asset('/assets/images/logo2.png')}}" alt="Mobirise" style="height: 3.8rem;">
                     </a>
                 </span>
                 <span class="navbar-caption-wrap"><a class="navbar-caption text-white display-5"

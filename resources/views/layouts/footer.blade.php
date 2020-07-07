@@ -9,7 +9,7 @@
             <div class="col-12 col-md-3">
                 <div class="media-wrap">
                     <a href="https://mobirise.co/">
-                        <img src="/assets/images/logo22.png" alt="Mobirise">
+                        <img src="{{asset('/assets/images/logo22.png')}}" alt="Mobirise">
                     </a>
                 </div>
             </div>
